@@ -4,6 +4,7 @@ import About from "../../components/home/About";
 import Gallery from "../../components/home/Gallery";
 import Tickets from "../../components/home/Tickets";
 import Restaurant from "../../components/home/Restaurant";
+import Testimonials from "../../components/home/Testimonials";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
     <Gallery />
     <Tickets />
     <Restaurant />
+    <Testimonials />
   </>
   );
 }
