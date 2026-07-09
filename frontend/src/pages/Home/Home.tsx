@@ -3,6 +3,7 @@ import Hero from "../../components/home/Hero";
 import About from "../../components/home/About";
 import Gallery from "../../components/home/Gallery";
 import Tickets from "../../components/home/Tickets";
+import Restaurant from "../../components/home/Restaurant";
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
     <About />
     <Gallery />
     <Tickets />
+    <Restaurant />
   </>
   );
 }
