@@ -1,6 +1,7 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import videoHome from "../../assets/videos/video-home.mp4";
+import { links } from "../../data/links";
 
 function Hero() {
   return (
@@ -34,7 +35,7 @@ function Hero() {
         sx={{
           position: "absolute",
           inset: 0,
-          bgcolor: "rgba(0,0,0,.55)",
+          bgcolor: "rgba(0, 0, 0, 0.55)",
         }}
       />
 
@@ -89,6 +90,9 @@ function Hero() {
               size="large"
               variant="contained"
               color="secondary"
+              href={links.sympla}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Comprar Agora
             </Button>
