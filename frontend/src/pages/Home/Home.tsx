@@ -6,6 +6,7 @@ import Tickets from "../../components/home/Tickets";
 import Restaurant from "../../components/home/Restaurant";
 import Testimonials from "../../components/home/Testimonials";
 import Contact from "../../components/home/Contact";
+import Footer from "../../components/home/Footer";
 
 function Home() {
   return (
@@ -18,6 +19,7 @@ function Home() {
     <Restaurant />
     <Testimonials />
     <Contact />
+    <Footer />
   </>
   );
 }
