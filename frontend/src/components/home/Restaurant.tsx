@@ -26,6 +26,7 @@ import { links } from "../../data/links";
 function Restaurant() {
   return (
     <Box
+      id="restaurant"
       sx={{
         py: 12,
         bgcolor: "#ffffff",

@@ -7,6 +7,7 @@ import { links } from "../../data/links";
 function About() {
   return (
     <Box
+     id="about"
       sx={{
         py: 10,
         bgcolor: "#fafafa",

@@ -10,6 +10,7 @@ const images = [gallery1, gallery2, gallery3];
 function Gallery() {
   return (
     <Box
+     id="gallery"
       sx={{
         py: 12,
         bgcolor: "#fff",
