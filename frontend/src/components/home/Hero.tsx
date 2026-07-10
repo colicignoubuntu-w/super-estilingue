@@ -6,6 +6,7 @@ import { links } from "../../data/links";
 function Hero() {
   return (
     <Box
+     id="hero"
       sx={{
         position: "relative",
         height: "100vh",

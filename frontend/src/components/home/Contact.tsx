@@ -20,6 +20,7 @@ const mapsLink =
 function Contact() {
   return (
     <Box
+      id="contact"
       sx={{
         py: 12,
         bgcolor: "#fff",

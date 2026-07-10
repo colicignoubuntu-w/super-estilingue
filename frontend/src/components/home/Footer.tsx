@@ -16,6 +16,7 @@ import {
 function Footer() {
   return (
     <Box
+      id="footer"
       component="footer"
       sx={{
         bgcolor: "#111",
