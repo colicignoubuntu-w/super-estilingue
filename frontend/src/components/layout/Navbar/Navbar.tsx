@@ -13,21 +13,39 @@ import {
 
 import MenuIcon from "@mui/icons-material/Menu";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { links } from "../../../data/links";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
+}, []);
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
-      sx={{
-        background: "rgba(0,0,0,.55)",
-        backdropFilter: "blur(10px)",
-      }}
-    >
+  <AppBar
+  position="fixed"
+  elevation={0}
+  sx={{
+    background: scrolled
+      ? "rgba(0,0,0,.85)"
+      : "rgba(0,0,0,.25)",
+
+    backdropFilter: "blur(10px)",
+
+    transition: "all .35s ease",
+  }}
+>
       <Toolbar
         sx={{
           maxWidth: "1200px",
