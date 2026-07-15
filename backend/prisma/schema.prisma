@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Settings {
+  id              Int      @id @default(1)
+  minimumAge      Int
+  minimumWeight   Float
+  maximumWeight   Float
+  ticketPrice     Decimal  @db.Decimal(10, 2)
+  dronePrice      Decimal  @db.Decimal(10, 2)
+  handCameraPrice Decimal  @db.Decimal(10, 2)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model OperatingDay {
+  id           Int           @id @default(autoincrement())
+  date         DateTime      @unique
+  capacity     Int
+  isOpen       Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  reservations Reservation[]
+}
+
+model Reservation {
+  id             Int               @id @default(autoincrement())
+  code           String            @unique
+  buyerName      String
+  buyerEmail     String
+  buyerPhone     String
+  quantity       Int
+  acceptedTerms  Boolean
+  total          Decimal           @db.Decimal(10, 2)
+  status         ReservationStatus @default(PENDING)
+  operatingDayId Int
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  payment        Payment?
+  operatingDay   OperatingDay      @relation(fields: [operatingDayId], references: [id])
+  tickets        Ticket[]
+}
+
+model Payment {
+  id                      Int           @id @default(autoincrement())
+  mercadoPagoPaymentId    String?       @unique
+  mercadoPagoPreferenceId String?       @unique
+  status                  PaymentStatus @default(PENDING)
+  method                  String?
+  reservationId           Int           @unique
+  createdAt               DateTime      @default(now())
+  reservation             Reservation   @relation(fields: [reservationId], references: [id])
+}
+
+model Ticket {
+  id            Int         @id @default(autoincrement())
+  qrCode        String
+  used          Boolean     @default(false)
+  reservationId Int
+  createdAt     DateTime    @default(now())
+  code          String      @unique
+  reservation   Reservation @relation(fields: [reservationId], references: [id])
+}
+
+enum ReservationStatus {
+  PENDING
+  PAID
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  REFUNDED
+}
