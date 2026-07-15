@@ -1,18 +1,22 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import videoHome from "../../assets/videos/video-home.mp4";
-import { links } from "../../data/links";
 
 function Hero() {
+
+  const navigate = useNavigate();
+
   return (
     <Box
-     id="hero"
+      id="hero"
       sx={{
         position: "relative",
         height: "100vh",
         overflow: "hidden",
       }}
     >
+
       {/* Vídeo de fundo */}
       <video
         autoPlay
@@ -31,6 +35,7 @@ function Hero() {
         <source src={videoHome} type="video/mp4" />
       </video>
 
+
       {/* Camada escura */}
       <Box
         sx={{
@@ -39,6 +44,7 @@ function Hero() {
           bgcolor: "rgba(0, 0, 0, 0.55)",
         }}
       />
+
 
       {/* Conteúdo */}
       <Container
@@ -51,12 +57,23 @@ function Hero() {
           alignItems: "center",
         }}
       >
+
         <Box sx={{ maxWidth: 650 }}>
+
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            initial={{
+              opacity: 0,
+              y: 80,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 1,
+            }}
           >
+
             <Typography
               variant="h1"
               sx={{
@@ -71,6 +88,7 @@ function Hero() {
             >
               Viva a maior adrenalina de Pedra Bela
             </Typography>
+
 
             <Typography
               variant="h5"
@@ -87,21 +105,26 @@ function Hero() {
               Garanta seu ingresso online em poucos segundos.
             </Typography>
 
+
             <Button
               size="large"
               variant="contained"
               color="secondary"
-              href={links.sympla}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => navigate("/checkout")}
             >
               Comprar Agora
             </Button>
+
+
           </motion.div>
+
         </Box>
+
       </Container>
+
     </Box>
   );
 }
+
 
 export default Hero;

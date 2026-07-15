@@ -2,9 +2,11 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 import aboutImage from "../../assets/images/about.png";
-import { links } from "../../data/links";
+import { useNavigate } from "react-router-dom";
 
 function About() {
+
+  const navigate = useNavigate();
   return (
     <Box
      id="about"
@@ -104,15 +106,13 @@ function About() {
             </Box>
 
             <Button
-              variant="contained"
-              color="secondary"
-              size="large"
-              href={links.sympla}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Comprar Agora
-            </Button>
+  variant="contained"
+  color="secondary"
+  size="large"
+  onClick={() => navigate("/checkout")}
+>
+  Comprar Agora
+</Button>
           </motion.div>
         </Box>
       </Container>

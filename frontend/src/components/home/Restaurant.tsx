@@ -15,15 +15,18 @@ import {
 } from "@mui/icons-material";
 
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 import restaurantMain from "../../assets/images/restaurant-main.png";
 import restaurantFood from "../../assets/images/restaurant-food.png";
 import restaurantDrinks from "../../assets/images/restaurant-drinks.png";
 import restaurantBuffet from "../../assets/images/restaurant-buffet.png";
 
-import { links } from "../../data/links";
 
 function Restaurant() {
+
+  const navigate = useNavigate();
+
   return (
     <Box
       id="restaurant"
@@ -32,6 +35,7 @@ function Restaurant() {
         bgcolor: "#ffffff",
       }}
     >
+
       <Container maxWidth="lg">
 
         <Typography
@@ -45,6 +49,7 @@ function Restaurant() {
           RESTAURANTE
         </Typography>
 
+
         <Typography
           variant="h3"
           sx={{
@@ -56,6 +61,8 @@ function Restaurant() {
           Muito mais do que adrenalina
         </Typography>
 
+
+
         <Grid
           container
           spacing={6}
@@ -64,13 +71,16 @@ function Restaurant() {
           }}
         >
 
+
           <Grid size={{ xs: 12, md: 6 }}>
+
             <motion.div
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
+
               <Box
                 component="img"
                 src={restaurantMain}
@@ -81,16 +91,23 @@ function Restaurant() {
                   boxShadow: "0 20px 50px rgba(0,0,0,.25)",
                 }}
               />
+
             </motion.div>
+
           </Grid>
 
+
+
           <Grid size={{ xs: 12, md: 6 }}>
+
             <motion.div
               initial={{ opacity: 0, x: 80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
+
+
               <Typography
                 variant="h4"
                 sx={{
@@ -100,6 +117,8 @@ function Restaurant() {
               >
                 Complete seu passeio com uma ótima refeição
               </Typography>
+
+
 
               <Typography
                 color="text.secondary"
@@ -115,82 +134,113 @@ function Restaurant() {
                 e os amigos.
               </Typography>
 
-              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+
+
+              <Box sx={{ display:"flex", gap:2, mb:2 }}>
                 <RestaurantIcon color="secondary" />
-                <Typography>Buffet com comida caseira.</Typography>
+                <Typography>
+                  Buffet com comida caseira.
+                </Typography>
               </Box>
 
-              <Box sx={{ display: "flex", gap: 2, mb: 2 }}>
+
+
+              <Box sx={{ display:"flex", gap:2, mb:2 }}>
                 <LocalBar color="secondary" />
-                <Typography>Drinks, porções e bebidas.</Typography>
+                <Typography>
+                  Drinks, porções e bebidas.
+                </Typography>
               </Box>
 
-              <Box sx={{ display: "flex", gap: 2, mb: 5 }}>
+
+
+              <Box sx={{ display:"flex", gap:2, mb:5 }}>
                 <Nature color="secondary" />
-                <Typography>Vista privilegiada para o lago e montanhas.</Typography>
+                <Typography>
+                  Vista privilegiada para o lago e montanhas.
+                </Typography>
               </Box>
+
+
 
               <Button
                 variant="contained"
                 color="secondary"
                 size="large"
-                href={links.sympla}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={() => navigate("/checkout")}
               >
                 Comprar Agora
               </Button>
 
+
             </motion.div>
+
           </Grid>
 
+
         </Grid>
+
+
 
         <Grid
           container
           spacing={3}
           sx={{
-            mt: 8,
+            mt:8,
           }}
         >
 
+
           {[restaurantFood, restaurantDrinks, restaurantBuffet].map(
-            (image, index) => (
+            (image,index)=>(
+              
               <Grid
                 key={index}
-                size={{ xs: 12, md: 4 }}
+                size={{xs:12, md:4}}
               >
+
                 <motion.div
-                  initial={{ opacity: 0, y: 60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{opacity:0,y:60}}
+                  whileInView={{opacity:1,y:0}}
                   transition={{
-                    duration: 0.7,
-                    delay: index * 0.2,
+                    duration:0.7,
+                    delay:index*0.2,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{once:true}}
                 >
+
                   <Card
                     sx={{
-                      borderRadius: 4,
-                      overflow: "hidden",
+                      borderRadius:4,
+                      overflow:"hidden",
                     }}
                   >
+
                     <CardMedia
                       component="img"
                       image={image}
                       height="280"
                     />
+
                   </Card>
+
+
                 </motion.div>
+
               </Grid>
+
             )
           )}
 
+
         </Grid>
 
+
       </Container>
+
     </Box>
   );
 }
+
 
 export default Restaurant;

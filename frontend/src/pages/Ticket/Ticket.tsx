@@ -12,6 +12,7 @@ interface TicketData {
   };
 }
 
+
 export default function Ticket() {
 
   const { code } = useParams();
@@ -20,28 +21,34 @@ export default function Ticket() {
   const [loading, setLoading] = useState(true);
 
 
+
   useEffect(() => {
 
     async function loadTicket() {
 
       try {
 
-        const response =
-          await fetch(
-            `http://localhost:3001/api/tickets/${code}`
-          );
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/tickets/${code}`
+        );
 
 
-        const data =
-          await response.json();
+        const data = await response.json();
 
 
-        setTicket(data.ticket);
+        if(data.success){
+
+          setTicket(data.ticket);
+
+        }
 
 
       } catch(error) {
 
-        console.error(error);
+        console.error(
+          "Erro ao buscar ingresso:",
+          error
+        );
 
       } finally {
 
@@ -52,24 +59,42 @@ export default function Ticket() {
     }
 
 
-    loadTicket();
+    if(code){
+
+      loadTicket();
+
+    }
 
   }, [code]);
 
 
 
-  if (loading) {
-    return <h2>Carregando ingresso...</h2>;
+  if(loading){
+
+    return (
+      <h2>
+        Carregando ingresso...
+      </h2>
+    );
+
   }
 
 
-  if (!ticket) {
-    return <h2>Ingresso não encontrado.</h2>;
+
+  if(!ticket){
+
+    return (
+      <h2>
+        Ingresso não encontrado.
+      </h2>
+    );
+
   }
 
 
 
   return (
+
     <div>
 
       <h1>
@@ -96,6 +121,7 @@ export default function Ticket() {
       </p>
 
 
+
       <img
         src={ticket.qrCode}
         alt="QR Code do ingresso"
@@ -103,17 +129,26 @@ export default function Ticket() {
       />
 
 
+
       <p>
         Código:
-        <br />
-        {ticket.code}
       </p>
+
+
+      <strong>
+        {ticket.code}
+      </strong>
+
 
 
       <p>
         Apresente este QR Code na entrada.
       </p>
 
+
+
     </div>
+
   );
+
 }

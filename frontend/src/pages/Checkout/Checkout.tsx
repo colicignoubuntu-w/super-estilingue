@@ -36,7 +36,7 @@ export default function Checkout() {
 
       const response =
         await fetch(
-          "http://localhost:3001/api/reservations",
+          `${import.meta.env.VITE_API_URL}/api/reservations`,
           {
             method: "POST",
 

@@ -6,14 +6,20 @@ import {
   Container,
   Typography,
 } from "@mui/material";
+
 import {
   CheckCircle,
 } from "@mui/icons-material";
-import { motion } from "framer-motion";
 
-import { links } from "../../data/links";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 
 function Tickets() {
+
+  const navigate = useNavigate();
+
+
   return (
     <Box
       sx={{
@@ -21,7 +27,9 @@ function Tickets() {
         bgcolor: "#fafafa",
       }}
     >
+
       <Container maxWidth="md">
+
 
         <Typography
           color="secondary"
@@ -34,6 +42,8 @@ function Tickets() {
           INGRESSOS
         </Typography>
 
+
+
         <Typography
           variant="h3"
           sx={{
@@ -45,12 +55,17 @@ function Tickets() {
           Garanta sua aventura
         </Typography>
 
+
+
+
         <motion.div
           initial={{ opacity: 0, y: 70 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: .8 }}
           viewport={{ once: true }}
         >
+
+
           <Card
             sx={{
               borderRadius: 5,
@@ -58,7 +73,11 @@ function Tickets() {
               p: 3,
             }}
           >
+
+
             <CardContent>
+
+
 
               <Typography
                 variant="h4"
@@ -71,13 +90,17 @@ function Tickets() {
                 Super Estilingue
               </Typography>
 
+
+
+
               {[
                 "Equipamentos certificados",
                 "Equipe especializada",
                 "Experiência radical",
                 "Vista incrível de Pedra Bela",
-                "Compra rápida pelo Sympla",
+                "Compra rápida e segura online",
               ].map((item) => (
+
                 <Box
                   key={item}
                   sx={{
@@ -87,10 +110,20 @@ function Tickets() {
                     mb: 2,
                   }}
                 >
+
                   <CheckCircle color="secondary" />
-                  <Typography>{item}</Typography>
+
+                  <Typography>
+                    {item}
+                  </Typography>
+
+
                 </Box>
+
               ))}
+
+
+
 
               <Typography
                 variant="h3"
@@ -102,8 +135,11 @@ function Tickets() {
                   mb: 4,
                 }}
               >
-                Consulte os valores no Sympla
+                Consulte os valores dos ingressos
               </Typography>
+
+
+
 
               <Box
                 sx={{
@@ -111,25 +147,37 @@ function Tickets() {
                   justifyContent: "center",
                 }}
               >
+
+
                 <Button
                   variant="contained"
                   color="secondary"
                   size="large"
-                  href={links.sympla}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={() => navigate("/checkout")}
                 >
                   Comprar Agora
                 </Button>
+
+
               </Box>
 
+
+
             </CardContent>
+
+
           </Card>
+
+
         </motion.div>
 
+
       </Container>
+
+
     </Box>
   );
 }
+
 
 export default Tickets;
