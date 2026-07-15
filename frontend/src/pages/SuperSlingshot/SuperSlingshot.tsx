@@ -14,7 +14,7 @@ function Success() {
 
         const response =
           await fetch(
-            "http://localhost:3001/api/tickets/reservation/SE-1784145513240"
+            `${import.meta.env.VITE_API_URL}/api/reservations`
           );
 
 
