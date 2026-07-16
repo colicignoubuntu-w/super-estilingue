@@ -14,15 +14,12 @@ export async function createMercadoPagoPreference(data: {
   buyerEmail: string;
 }) {
 
-
   const preference = new Preference(client);
-
 
 
   const response = await preference.create({
 
     body: {
-
 
       items: [
 
@@ -46,7 +43,6 @@ export async function createMercadoPagoPreference(data: {
       ],
 
 
-
       payer: {
 
         name: data.buyerName,
@@ -56,37 +52,33 @@ export async function createMercadoPagoPreference(data: {
       },
 
 
-
-      // código da reserva
+      // Código único da reserva
       external_reference: data.code,
 
 
-
-      // retorno após pagamento
+      // Retorno do cliente após pagamento
       back_urls: {
 
         success:
-          `http://localhost:5173/success?external_reference=${data.code}`,
+          `https://superestilinguepb.com.br/success?external_reference=${data.code}`,
 
         failure:
-          "http://localhost:5173/failure",
+          "https://superestilinguepb.com.br/failure",
 
         pending:
-          "http://localhost:5173/pending",
+          "https://superestilinguepb.com.br/pending",
 
       },
 
 
-
-      // webhook Mercado Pago
+      // Webhook Mercado Pago
       notification_url:
-        "https://abroad-sprang-trouble.ngrok-free.dev/api/payments/webhook"
+        "https://super-estilingue.onrender.com/api/payments/webhook"
 
 
     },
 
   });
-
 
 
   console.log(
