@@ -1,7 +1,7 @@
 import { Fab } from "@mui/material";
 import { FaWhatsapp } from "react-icons/fa";
 
-const phone = "+551193356-4688";
+const phone = "5511933564688";
 
 function WhatsAppButton() {
   return (
