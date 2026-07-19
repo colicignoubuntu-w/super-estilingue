@@ -266,7 +266,7 @@ function Navbar() {
             <ListItemButton
               onClick={() => {
                 setOpen(false);
-                navigate("/checkout");
+                navigate("https://appticket.com.br/super-estilingue");
               }}
             >
 
