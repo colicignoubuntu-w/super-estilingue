@@ -153,7 +153,7 @@ function Tickets() {
                   variant="contained"
                   color="secondary"
                   size="large"
-                  onClick={() => navigate("/checkout")}
+                  onClick={() => navigate("https://appticket.com.br/super-estilingue")}
                 >
                   Comprar Agora
                 </Button>
