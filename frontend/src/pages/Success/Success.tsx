@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 function Success() {
 
-
   const [ticket, setTicket] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
 
 
@@ -15,30 +15,27 @@ function Success() {
     async function loadTicket() {
 
 
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
+      const params = new URLSearchParams(
+        window.location.search
+      );
 
 
       const reservationCode =
-        params.get(
-          "external_reference"
-        );
+        params.get("external_reference");
 
 
 
       console.log(
-        "Reserva:",
+        "Código da reserva:",
         reservationCode
       );
 
 
 
-      if(!reservationCode){
+      if (!reservationCode) {
 
-        console.error(
-          "Reserva não encontrada na URL"
+        setError(
+          "Código da reserva não encontrado."
         );
 
         setLoading(false);
@@ -54,8 +51,18 @@ function Success() {
 
         const response =
           await fetch(
-            `${import.meta.env.VITE_API_URL}/api/reservations`
+            `${import.meta.env.VITE_API_URL}/api/tickets/${reservationCode}`
           );
+
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            "Ingresso não encontrado"
+          );
+
+        }
 
 
 
@@ -65,27 +72,27 @@ function Success() {
 
 
         console.log(
-          "Resposta ingressos:",
+          "Ingresso recebido:",
           data
         );
 
 
 
-        if(data.success){
-
-          setTicket(
-            data.tickets[0]
-          );
-
-        }
+        setTicket(data);
 
 
 
-      } catch(error){
+      } catch (error) {
 
 
         console.error(
+          "Erro ao buscar ingresso:",
           error
+        );
+
+
+        setError(
+          "Não foi possível gerar seu ingresso."
         );
 
 
@@ -110,13 +117,21 @@ function Success() {
 
 
 
-  if(loading){
+  if (loading) {
 
     return (
 
-      <h2>
-        Gerando seu ingresso...
-      </h2>
+      <div>
+
+        <h2>
+          Confirmando pagamento...
+        </h2>
+
+        <p>
+          Aguarde enquanto geramos seu ingresso.
+        </p>
+
+      </div>
 
     );
 
@@ -125,17 +140,49 @@ function Success() {
 
 
 
-  if(!ticket){
+
+  if (error) {
 
     return (
 
-      <h2>
-        Não foi possível encontrar seu ingresso.
-      </h2>
+      <div>
+
+        <h2>
+          Ops!
+        </h2>
+
+
+        <p>
+          {error}
+        </p>
+
+
+      </div>
 
     );
 
   }
+
+
+
+
+
+  if (!ticket) {
+
+    return (
+
+      <div>
+
+        <h2>
+          Ingresso não encontrado.
+        </h2>
+
+      </div>
+
+    );
+
+  }
+
 
 
 
@@ -157,13 +204,17 @@ function Success() {
 
 
 
+      <p>
+        Apresente este QR Code na entrada:
+      </p>
+
+
+
       <img
 
-        src={
-          ticket.qrCode
-        }
+        src={ticket.qrCode}
 
-        alt="QR Code"
+        alt="QR Code do ingresso"
 
         width={250}
 
@@ -181,6 +232,11 @@ function Success() {
         {ticket.code}
       </strong>
 
+
+
+      <p>
+        Obrigado pela compra!
+      </p>
 
 
     </div>
