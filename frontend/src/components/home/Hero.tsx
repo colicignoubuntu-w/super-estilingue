@@ -110,7 +110,7 @@ function Hero() {
               size="large"
               variant="contained"
               color="secondary"
-              onClick={() => navigate("/checkout")}
+              onClick={() => navigate("https://appticket.com.br/super-estilingue")}
             >
               Comprar Agora
             </Button>

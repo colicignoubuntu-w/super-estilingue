@@ -178,6 +178,4 @@ function Tickets() {
     </Box>
   );
 }
-
-
 export default Tickets;
